@@ -1,0 +1,57 @@
+{
+  "overview": {
+    "title": "Wafer Manufacturing",
+    "content": [
+      "The first process of manufacturing silicon wafers, which are the foundation of semiconductor integrated circuits.",
+      "Highly purified silicon extracted from sand is melted to grow a single-crystal ingot, which is then sliced thinly and polished to a mirror-like finish."
+    ]
+  },
+  "equipment": {
+    "title": "Wafer Manufacturing Equipment",
+    "components": [
+      {
+        "name": "CZ Crystal Puller",
+        "desc": "Melts high-purity polycrystalline silicon and grows it into a single-crystal ingot."
+      },
+      {
+        "name": "Wire Saw",
+        "desc": "Uses a diamond wire to slice the ingot into thin wafer forms."
+      },
+      {
+        "name": "Polisher",
+        "desc": "Flattens the wafer surface through Chemical Mechanical Polishing (CMP)."
+      }
+    ]
+  },
+  "principle": {
+    "title": "Operating Principle (DPW Calculation)",
+    "content": [
+      "DPW (Dies Per Wafer) is the total number of chips that can be produced from a single wafer.",
+      "Since perfect square dies cannot be obtained at the edge of the wafer, the actual number of chips produced is less than simply calculating (Wafer Area / Die Area)."
+    ]
+  },
+  "test": [
+    {
+      "id": 1,
+      "question": "When producing dies of the same size, what is the main reason for using 300mm wafers over 200mm wafers?",
+      "options": [
+        "Because defect rates are lower on larger wafers.",
+        "To reduce unit cost by producing more dies at once.",
+        "To make thicker chips.",
+        "Because processing time is reduced."
+      ],
+      "answer": 1,
+      "explanation": "A 300mm wafer has 2.25 times the area of a 200mm wafer, making it highly economical as more chips (Dies) can be produced in a single process."
+    }
+  ],
+  "theory": {
+    "title": "1. Silicon Crystal Growth & Wafer Theory",
+    "content": [
+      "The silicon (Si) wafer, which is the foundation of semiconductor devices, is made by melting high-purity polycrystalline silicon and then growing it into a single crystal.",
+      "The most representative method is the Czochralski (CZ) process. Silicon is melted in a quartz crucible at a high temperature of over 1400°C, and a single crystal seed is brought into contact with the melt and slowly pulled upwards while rotating to grow a cylindrical ingot.",
+      "Afterwards, both ends of the ingot are cut off, and it goes through a slicing process to be cut into uniform thicknesses.",
+      "The sliced wafers go through lapping and etching processes to remove surface irregularities and defects, and finally, Chemical Mechanical Polishing (CMP) is performed to create a mirror-flat surface.",
+      "Subsequent operations of the 8 major semiconductor processes take place on this completed bare wafer."
+    ]
+  }
+}

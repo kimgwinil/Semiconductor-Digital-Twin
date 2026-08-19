@@ -1,0 +1,166 @@
+{
+  "app_title": "Semiconductor Digital Twin",
+  "login": {
+    "title": "학습자 등록",
+    "name": "이름",
+    "organization": "소속",
+    "department": "학과",
+    "studentId": "학번",
+    "course": "과정명",
+    "role_student": "학생",
+    "role_instructor": "교수자",
+    "start_btn": "학습 시작",
+    "required": "필수 입력 항목입니다."
+  },
+  "nav": {
+    "m1": "01 웨이퍼 제조",
+    "m2": "02 산화공정",
+    "m3": "03 포토공정",
+    "m4": "04 식각공정",
+    "m5": "05 증착 & 이온주입",
+    "m6": "06 금속배선",
+    "m7": "07 EDS",
+    "m8": "08 패키징"
+  },
+  "tabs": {
+    "theory": "이론 학습",
+    "overview": "공정 개요",
+    "equipment": "장비 구조",
+    "principle": "동작 원리",
+    "basic": "기초 실습",
+    "intermediate": "응용 실습",
+    "advanced": "심화 실습",
+    "test": "테스트",
+    "evaluation": "평가결과"
+  },
+  "oxidation": {
+    "title": "산화공정 (Oxidation)",
+    "desc": "실리콘 웨이퍼 표면에 고온에서 산소나 수증기를 반응시켜 보호막 역할을 하는 산화막(SiO₂)을 형성하는 공정입니다.",
+    "params": {
+      "temperature": "온도",
+      "time": "공정 시간",
+      "type": "산화 방식",
+      "dry": "건식 (Dry O₂)",
+      "wet": "습식 (Wet H₂O)"
+    },
+    "results": {
+      "target": "목표 두께",
+      "actual": "실제 계산값",
+      "measured": "계측장비 측정값",
+      "error": "오차율",
+      "status": "상태"
+    },
+    "chart": {
+      "title": "공정 시간 - 산화막 두께 변화",
+      "time_min": "시간 (분)",
+      "thickness_nm": "두께 (nm)"
+    },
+    "controls": {
+      "start": "공정 시작",
+      "stop": "정지",
+      "reset": "초기화"
+    }
+  },
+  "common": {
+    "pass": "PASS",
+    "fail": "FAIL",
+    "running": "공정 진행 중...",
+    "idle": "대기 중"
+  },
+  "wafer": {
+    "title": "웨이퍼 제조 (Wafer Manufacturing)",
+    "desc": "모래에서 추출한 실리콘을 고순도로 정제하여 반도체 집적회로의 기판이 되는 얇은 원판(웨이퍼)을 만드는 공정입니다.",
+    "params": {
+      "diameter": "웨이퍼 직경",
+      "dieWidth": "다이 가로 길이 (mm)",
+      "dieHeight": "다이 세로 길이 (mm)"
+    },
+    "results": {
+      "area": "다이 면적",
+      "grossDies": "예상 총 칩 수 (DPW)",
+      "target": "목표 수량",
+      "measured": "계산된 수량"
+    },
+    "controls": {
+      "start": "웨이퍼 레이아웃 계산"
+    }
+  },
+  "eds": {
+    "title": "EDS (Electrical Die Sorting)",
+    "desc": "웨이퍼에 형성된 개별 반도체 칩들의 전기적 동작 상태를 검사하여 양품과 불량품을 선별하는 공정입니다.",
+    "params": {
+      "defectDensity": "결함 밀도 (Defects/cm²)",
+      "dieArea": "다이 면적 (cm²)"
+    },
+    "results": {
+      "total": "총 다이 수",
+      "good": "양품 (Good Dies)",
+      "yield": "수율 (Yield)",
+      "measured": "테스터 측정 수율"
+    },
+    "controls": {
+      "start": "프로브 검사 시작"
+    }
+  },
+  "packaging": {
+    "title": "패키징 (Packaging)",
+    "desc": "완성된 칩을 외부 환경으로부터 보호하고, 기기 회로기판과 전기적으로 연결될 수 있도록 포장하는 최종 공정입니다.",
+    "params": {
+      "power": "동작 전력 (W)",
+      "thermalResistance": "열 저항 (θJA, °C/W)",
+      "ambient": "주변 온도 (°C)"
+    },
+    "results": {
+      "junctionTemp": "칩 접합부 온도 (Tj)",
+      "limit": "온도 한계",
+      "measured": "열화상 측정 온도"
+    },
+    "controls": {
+      "start": "패키지 신뢰성 테스트"
+    }
+  },
+  "lithography": {
+    "title": "포토공정 (Photolithography)",
+    "desc": "웨이퍼 위에 빛에 반응하는 감광액(PR)을 바르고, 마스크를 통해 빛을 쪼여 회로 패턴을 형성하는 공정입니다.",
+    "params": {
+      "wavelength": "노광 파장 (λ)",
+      "na": "개구수 (NA)",
+      "dose": "노광량 (Dose)"
+    },
+    "results": {
+      "target": "목표 선폭 (CD)",
+      "resolution": "해상도 한계 (Resolution Limit)",
+      "actual": "형성된 선폭 (Actual CD)",
+      "measured": "계측 선폭",
+      "status": "패턴 상태"
+    },
+    "chart": {
+      "title": "노광 파라미터 변화와 선폭"
+    },
+    "controls": {
+      "start": "노광 시작"
+    }
+  },
+  "etching": {
+    "title": "식각공정 (Etching)",
+    "desc": "포토공정에서 형성된 패턴을 마스크로 사용하여 하부 막질을 물리·화학적으로 깎아내는 공정입니다.",
+    "params": {
+      "rfPower": "RF 전력",
+      "pressure": "챔버 압력",
+      "time": "식각 시간"
+    },
+    "results": {
+      "target": "목표 식각 깊이",
+      "actual": "실제 식각 깊이",
+      "measured": "계측 깊이",
+      "undercut": "언더컷 (Undercut)",
+      "anisotropy": "비등방성 (Anisotropy)"
+    },
+    "chart": {
+      "title": "시간에 따른 식각 깊이 추이"
+    },
+    "controls": {
+      "start": "플라즈마 식각 시작"
+    }
+  }
+}

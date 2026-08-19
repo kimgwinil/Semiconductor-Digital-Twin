@@ -1,0 +1,62 @@
+{
+  "overview": {
+    "title": "Oxidation Process",
+    "content": [
+      "A process of growing a protective silicon dioxide (SiO₂) layer on the silicon wafer surface by reacting it with oxygen (O₂) or water vapor (H₂O) at high temperatures (800~1200°C).",
+      "The grown oxide layer plays crucial roles in semiconductor manufacturing, such as acting as an insulating layer to prevent leakage current, a diffusion barrier during ion implantation, and a hard mask during etching."
+    ]
+  },
+  "equipment": {
+    "title": "Oxidation Equipment Structure",
+    "components": [
+      {
+        "name": "Furnace",
+        "desc": "A quartz tube type equipment that heats the wafers to high temperatures."
+      },
+      {
+        "name": "Heater",
+        "desc": "Precisely controls and maintains the temperature inside the furnace between 800°C and 1200°C."
+      },
+      {
+        "name": "Gas Inlet",
+        "desc": "Injects the necessary O₂ gas or water vapor for the oxidation reaction."
+      },
+      {
+        "name": "Wafer Boat",
+        "desc": "A quartz structure that holds tens to hundreds of wafers vertically."
+      }
+    ]
+  },
+  "principle": {
+    "title": "Operating Principle (Deal-Grove Model)",
+    "content": [
+      "Oxide growth is explained by two mechanisms where oxygen molecules diffuse through the existing oxide layer and react at the silicon surface. This is known as the Deal-Grove Model.",
+      "1. Linear Growth Regime: Occurs when the initial oxide is thin, and the growth is determined by the chemical reaction rate at the surface.",
+      "2. Parabolic Growth Regime: As the oxide thickens, it takes longer for oxygen molecules to diffuse, gradually slowing down the growth rate."
+    ]
+  },
+  "test": [
+    {
+      "id": 1,
+      "question": "Which process has a faster oxide growth rate: Dry Oxidation or Wet Oxidation?",
+      "options": [
+        "Dry Oxidation (using O₂)",
+        "Wet Oxidation (using H₂O)",
+        "Both processes have the same rate.",
+        "It depends on the temperature, but usually dry is faster."
+      ],
+      "answer": 1,
+      "explanation": "Wet oxidation has a much faster growth rate because the water molecules (H₂O) used diffuse through the silicon oxide layer much faster than oxygen molecules (O₂)."
+    }
+  ],
+  "theory": {
+    "title": "2. Oxidation Process Advanced Theory",
+    "content": [
+      "The oxidation process is a thermodynamic process that forms a thin and uniform silicon dioxide (SiO2) layer on the surface of a silicon (Si) wafer by reacting oxygen (O2) or water vapor (H2O).",
+      "This oxide layer acts as an excellent insulator and plays an indispensable role in semiconductor manufacturing, such as the gate oxide of transistors, a diffusion barrier mask during ion implantation, and isolation between devices.",
+      "The most widely used physical model is the Deal-Grove model. This model mathematically defines the growth rate of the oxide layer through the continuity of three fluxes: 1) movement of oxygen molecules from the gas region to the oxide surface, 2) diffusion through the previously formed oxide layer, and 3) a chemical reaction (Si + O2 -> SiO2) at the silicon-oxide interface.",
+      "Dry Oxidation uses pure oxygen gas, which has a slow growth rate but forms a dense film with excellent electrical properties. It is mainly used where a thin and high-quality layer is required, such as a gate oxide.",
+      "Wet Oxidation utilizes water vapor, resulting in a very fast growth rate. It is mainly used to form thick protective layers or isolation layers."
+    ]
+  }
+}

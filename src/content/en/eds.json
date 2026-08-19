@@ -1,0 +1,57 @@
+{
+  "overview": {
+    "title": "Electrical Die Sorting (EDS)",
+    "content": [
+      "A process that tests the electrical operation of individual chips on the wafer after all front-end processes are completed.",
+      "It plays a feedback role in identifying problems in the preceding processes and reduces back-end (packaging) costs by filtering out defective chips in advance."
+    ]
+  },
+  "equipment": {
+    "title": "EDS Equipment Structure",
+    "components": [
+      {
+        "name": "Wafer Prober",
+        "desc": "Accurately moves the wafer and brings it into contact with the probe card."
+      },
+      {
+        "name": "Probe Card",
+        "desc": "An array of microscopic needles (pins) that contact the chip's pads to transmit electrical signals."
+      },
+      {
+        "name": "Semiconductor Tester",
+        "desc": "Sends and receives electrical signals to determine if the chip is good or defective."
+      }
+    ]
+  },
+  "principle": {
+    "title": "Operating Principle (Yield Model)",
+    "content": [
+      "Yield refers to the ratio of properly functioning chips to the maximum number of chips designed on a single wafer.",
+      "Statistical models such as the Poisson Model are commonly used. As Defect Density increases or Die Area becomes larger, the yield drops exponentially."
+    ]
+  },
+  "test": [
+    {
+      "id": 1,
+      "question": "Under the same Defect Density conditions, how does the Yield change if the Die Area increases?",
+      "options": [
+        "Yield increases.",
+        "Yield decreases.",
+        "Yield remains the same.",
+        "Chip size is unrelated to yield."
+      ],
+      "answer": 1,
+      "explanation": "As the chip size increases, the probability of a defect (particle) being included within a single chip increases, causing the proportion of good products (Yield) to drop."
+    }
+  ],
+  "theory": {
+    "title": "7. EDS (Electrical Die Sorting) Advanced Theory",
+    "content": [
+      "This is a process that determines whether each chip on a wafer that has completed front-end processes properly performs the desired electrical characteristics and functions. It is also called 'wafer test' or 'probe test'.",
+      "This process is performed by physically contacting a probe card with hundreds to thousands of microscopic pins to the pads of the wafer and exchanging electrical signals with the semiconductor tester equipment.",
+      "DC tests (short circuit, leakage current), AC tests (operating speed), and function tests (logical operation) are performed. For repairable memory semiconductors, a repair calculation process that replaces defective cells with redundant cells is also performed at this time.",
+      "Yield refers to the ratio of passed products (Good Dies) to the maximum number of chips that can be produced from the input wafer, and is a key indicator of manufacturing competitiveness.",
+      "According to the Poisson model among statistical yield models, yield is expressed as Y = exp(-D*A). In other words, as the area (A) of the chip increases and the defect density (D) generated during the process increases, the yield drops exponentially."
+    ]
+  }
+}

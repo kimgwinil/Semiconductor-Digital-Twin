@@ -1,0 +1,63 @@
+{
+  "overview": {
+    "title": "Etching Process",
+    "content": [
+      "A process that chemically and physically removes unnecessary layers from the surface of a wafer using the PR pattern formed in photolithography as a mask.",
+      "It is a core process that precisely leaves only the desired parts to complete the actual 3D structures (transistors, wiring, etc.) of the semiconductor."
+    ]
+  },
+  "equipment": {
+    "title": "Etching Equipment Structure",
+    "components": [
+      {
+        "name": "Vacuum Chamber",
+        "desc": "A sealed vacuum space where the etching process takes place."
+      },
+      {
+        "name": "RF Generator",
+        "desc": "Applies high-frequency power to the gas inside the chamber to create a plasma state."
+      },
+      {
+        "name": "Gas Showerhead",
+        "desc": "Uniformly sprays reactive etching gases onto the wafer surface."
+      },
+      {
+        "name": "Electrostatic Chuck (ESC)",
+        "desc": "Secures the wafer using static electricity and maintains a constant temperature."
+      }
+    ]
+  },
+  "principle": {
+    "title": "Operating Principle (Dry Etch RIE)",
+    "content": [
+      "Dry etching, the primary method used today, utilizes plasma.",
+      "1. Physical Etching: Heavy ions in the plasma are accelerated by voltage and collide with the wafer surface, physically breaking and removing the film (favorable for vertical etching/anisotropy).",
+      "2. Chemical Etching: Activated radical particles chemically react with the film to turn it into a volatile gas and blow it away (excellent etch rate and selectivity).",
+      "RIE (Reactive Ion Etching) is a technology that utilizes both simultaneously to obtain a fast and vertical etch profile."
+    ]
+  },
+  "test": [
+    {
+      "id": 1,
+      "question": "What is the property called where dry etching proceeds only in the vertical (downward) direction and not sideways?",
+      "options": [
+        "Selectivity",
+        "Anisotropy",
+        "Uniformity",
+        "Undercut"
+      ],
+      "answer": 1,
+      "explanation": "Anisotropy refers to the property of etching proceeding only in a specific direction (mainly vertical), which is essential for accurately implementing fine circuit patterns."
+    }
+  ],
+  "theory": {
+    "title": "4. Etching Process Advanced Theory",
+    "content": [
+      "The etching process selectively removes uncoated parts of films, such as oxide layers, metal layers, and polycrystalline silicon, under the PR pattern formed through photolithography acting as a mask.",
+      "Initially, Wet Etching using a chemical solution was used, but due to its isotropic etching characteristics, undercut occurred where the film was also etched in the horizontal direction, limiting the implementation of fine patterns.",
+      "To overcome this, Dry Etching using plasma is currently the primary method. Gas is injected into a vacuum chamber and radio frequency (RF) power is applied to create a plasma state where ions and radicals coexist.",
+      "Ions are strongly accelerated vertically by the bias voltage applied to the chuck, physically striking and cutting away the wafer surface (ion bombardment). This ensures vertical anisotropy.",
+      "Radicals are highly reactive neutral particles that chemically bond with the etched material to form volatile gases that escape through the exhaust port, thereby increasing the etch rate and selectivity. RIE (Reactive Ion Etching) is a combination of these two mechanisms."
+    ]
+  }
+}

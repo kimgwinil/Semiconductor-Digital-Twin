@@ -1,0 +1,62 @@
+{
+  "overview": {
+    "title": "Photolithography",
+    "content": [
+      "A process that transfers a circuit pattern to the photoresist (PR) on the wafer surface using light exposure.",
+      "It works similarly to developing a photograph and is the most critical and expensive process determining the miniaturization of semiconductor circuits."
+    ]
+  },
+  "equipment": {
+    "title": "Photolithography Equipment Structure",
+    "components": [
+      {
+        "name": "Spin Coater",
+        "desc": "Spins the wafer at high speed to coat it with a thin, uniform layer of photoresist (PR)."
+      },
+      {
+        "name": "Stepper/Scanner",
+        "desc": "Projects light through the mask and a lens to print a reduced circuit pattern onto the wafer."
+      },
+      {
+        "name": "Light Source",
+        "desc": "Generates short-wavelength light (e.g., ArF 193nm, EUV 13.5nm) for fine pattern formation."
+      },
+      {
+        "name": "Developer",
+        "desc": "Dissolves the exposed (or unexposed) PR areas using a chemical solution to complete the pattern."
+      }
+    ]
+  },
+  "principle": {
+    "title": "Operating Principle (Resolution Limit)",
+    "content": [
+      "The core of the exposure process is 'Resolution', which indicates how fine a pattern can be drawn.",
+      "According to the Rayleigh Criterion, resolution is determined by R = k1 * (λ / NA).",
+      "To obtain a finer pattern (smaller R), the wavelength (λ) of the light must be shortened, or the Numerical Aperture (NA) of the lens must be increased."
+    ]
+  },
+  "test": [
+    {
+      "id": 1,
+      "question": "To miniaturize semiconductors, the Resolution value in the photolithography process must be reduced. Which of the following is the correct method?",
+      "options": [
+        "Increase the wavelength of light (λ).",
+        "Decrease the numerical aperture (NA) of the lens.",
+        "Increase the process constant (k1).",
+        "Decrease the wavelength of light (λ)."
+      ],
+      "answer": 3,
+      "explanation": "According to the resolution formula R = k1 * (λ / NA), a shorter wavelength (λ) allows for a finer (smaller) resolution."
+    }
+  ],
+  "theory": {
+    "title": "3. Photolithography Advanced Theory",
+    "content": [
+      "Photolithography is the process of transferring a microscopic circuit pattern drawn on a reticle (mask) onto a photoresist (PR) coated on a wafer using light. It is the most important and expensive core process that determines the integration density of a semiconductor.",
+      "The core metrics of this process are Resolution (R) and Depth of Focus (DOF).",
+      "According to Rayleigh's criterion, the resolution is expressed as R = k1 * (λ / NA). In other words, to draw a finer circuit (smaller R), the wavelength of the light source (λ) must be reduced, or the numerical aperture (NA) of the lens must be increased.",
+      "Accordingly, the light source has evolved from G-line (436nm) -> I-line (365nm) -> KrF (248nm) -> ArF (193nm), and current cutting-edge processes use Extreme Ultraviolet (EUV) at 13.5nm.",
+      "In addition, Immersion Lithography, which maximizes NA by filling a liquid between the lens and the wafer, and Multi-Patterning technologies, which print a pattern multiple times, are used to overcome the limits of miniaturization."
+    ]
+  }
+}

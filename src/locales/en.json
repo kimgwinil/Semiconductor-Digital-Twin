@@ -1,0 +1,166 @@
+{
+  "app_title": "Semiconductor Digital Twin",
+  "login": {
+    "title": "Learner Registration",
+    "name": "Name",
+    "organization": "Organization",
+    "department": "Department",
+    "studentId": "Student ID",
+    "course": "Course",
+    "role_student": "Student",
+    "role_instructor": "Instructor",
+    "start_btn": "Start Training",
+    "required": "This field is required."
+  },
+  "nav": {
+    "m1": "01 Wafer",
+    "m2": "02 Oxidation",
+    "m3": "03 Photolithography",
+    "m4": "04 Etching",
+    "m5": "05 Deposition & Implant",
+    "m6": "06 Metal Interconnect",
+    "m7": "07 EDS",
+    "m8": "08 Packaging"
+  },
+  "tabs": {
+    "theory": "Theory",
+    "overview": "Overview",
+    "equipment": "Equipment",
+    "principle": "Principle",
+    "basic": "Basic Practice",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "test": "Test",
+    "evaluation": "Evaluation"
+  },
+  "oxidation": {
+    "title": "Oxidation Process",
+    "desc": "A process of growing a protective silicon dioxide (SiO₂) layer on the silicon wafer surface by reacting it with oxygen or water vapor at high temperatures.",
+    "params": {
+      "temperature": "Temperature",
+      "time": "Process Time",
+      "type": "Oxidation Type",
+      "dry": "Dry (O₂)",
+      "wet": "Wet (H₂O)"
+    },
+    "results": {
+      "target": "Target Thickness",
+      "actual": "Actual Value",
+      "measured": "Measured Value",
+      "error": "Error %",
+      "status": "Status"
+    },
+    "chart": {
+      "title": "Oxide Thickness vs Time",
+      "time_min": "Time (min)",
+      "thickness_nm": "Thickness (nm)"
+    },
+    "controls": {
+      "start": "Start Process",
+      "stop": "Stop",
+      "reset": "Reset"
+    }
+  },
+  "common": {
+    "pass": "PASS",
+    "fail": "FAIL",
+    "running": "Processing...",
+    "idle": "Idle"
+  },
+  "wafer": {
+    "title": "Wafer Manufacturing",
+    "desc": "The process of extracting highly purified silicon from sand to create the thin circular substrates (wafers) for integrated circuits.",
+    "params": {
+      "diameter": "Wafer Diameter",
+      "dieWidth": "Die Width (mm)",
+      "dieHeight": "Die Height (mm)"
+    },
+    "results": {
+      "area": "Die Area",
+      "grossDies": "Gross Dies Per Wafer (DPW)",
+      "target": "Target DPW",
+      "measured": "Calculated DPW"
+    },
+    "controls": {
+      "start": "Calculate Wafer Layout"
+    }
+  },
+  "eds": {
+    "title": "Electrical Die Sorting (EDS)",
+    "desc": "The process of testing the electrical operating status of individual semiconductor chips on the wafer to sort good and defective products.",
+    "params": {
+      "defectDensity": "Defect Density (Defects/cm²)",
+      "dieArea": "Die Area (cm²)"
+    },
+    "results": {
+      "total": "Total Dies",
+      "good": "Good Dies",
+      "yield": "Yield",
+      "measured": "Tester Yield"
+    },
+    "controls": {
+      "start": "Start Probe Test"
+    }
+  },
+  "packaging": {
+    "title": "Packaging Process",
+    "desc": "The final process of encapsulating the completed chip to protect it from the external environment and electrically connect it to the device circuit board.",
+    "params": {
+      "power": "Operating Power (W)",
+      "thermalResistance": "Thermal Resistance (θJA, °C/W)",
+      "ambient": "Ambient Temp (°C)"
+    },
+    "results": {
+      "junctionTemp": "Junction Temp (Tj)",
+      "limit": "Temperature Limit",
+      "measured": "Thermal Camera Temp"
+    },
+    "controls": {
+      "start": "Run Thermal Test"
+    }
+  },
+  "lithography": {
+    "title": "Photolithography",
+    "desc": "A process that transfers a circuit pattern to the photoresist (PR) on the wafer surface using light exposure.",
+    "params": {
+      "wavelength": "Wavelength (λ)",
+      "na": "Numerical Aperture (NA)",
+      "dose": "Exposure Dose"
+    },
+    "results": {
+      "target": "Target CD",
+      "resolution": "Resolution Limit",
+      "actual": "Actual CD",
+      "measured": "Measured CD",
+      "status": "Pattern Status"
+    },
+    "chart": {
+      "title": "Exposure Parameters vs CD"
+    },
+    "controls": {
+      "start": "Start Exposure"
+    }
+  },
+  "etching": {
+    "title": "Etching Process",
+    "desc": "A process that chemically and physically removes layers from the surface of a wafer using the PR pattern as a mask.",
+    "params": {
+      "rfPower": "RF Power",
+      "pressure": "Chamber Pressure",
+      "time": "Etch Time"
+    },
+    "results": {
+      "target": "Target Etch Depth",
+      "actual": "Actual Depth",
+      "measured": "Measured Depth",
+      "undercut": "Undercut",
+      "anisotropy": "Anisotropy"
+    },
+    "chart": {
+      "title": "Etch Depth vs Time"
+    },
+    "controls": {
+      "start": "Start Etching"
+    }
+  }
+}
