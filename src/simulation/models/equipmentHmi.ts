@@ -10,7 +10,8 @@ export interface HmiMetric {
 export function advanceActualValues(metrics: HmiMetric[], running: boolean): HmiMetric[] {
   return metrics.map((metric) => {
     const target = running ? metric.setpoint : Math.min(metric.setpoint, metric.actual);
-    const response = running ? 0.18 : 0.06;
+    const ratio = Math.abs(metric.actual - target) / Math.max(Math.abs(target), 1);
+    const response = running ? (ratio > 100 ? 0.62 : ratio > 10 ? 0.38 : 0.18) : 0.06;
     const next = metric.actual + (target - metric.actual) * response;
     return { ...metric, actual: Math.abs(target - next) < 0.01 ? target : next };
   });

@@ -15,13 +15,29 @@ export function Registration() {
     course: '',
     role: 'STUDENT' as const
   });
+  const [error, setError] = useState('');
+
+  const createUserId = () => {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+    if (typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function') {
+      const bytes = crypto.getRandomValues(new Uint32Array(2));
+      return `USER-${bytes[0].toString(16)}-${bytes[1].toString(16)}`;
+    }
+    return `USER-${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.studentId) return; // Simple validation
+    if (!formData.name.trim() || !formData.studentId.trim()) {
+      setError('이름과 학번을 입력해 주세요.');
+      return;
+    }
+    setError('');
     
     loginUser({
-      id: crypto.randomUUID(),
+      id: createUserId(),
       ...formData
     });
   };
@@ -127,6 +143,7 @@ export function Registration() {
           >
             {t('login.start_btn')}
           </button>
+          {error && <p role="alert" className="-mt-1 text-center text-sm font-medium text-amber-300">{error}</p>}
         </form>
       </div>
     </div>

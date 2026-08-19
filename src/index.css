@@ -16,10 +16,119 @@
 .equipment-hotspot.is-active { border-color:#67e8f9; transform:scale(1.08); box-shadow:0 0 24px #22d3ee; }
 .equipment-hotspot-number { padding:3px; transform:translate(-50%,-50%); }
 .equipment-hotspot-number.is-active { transform:translate(-50%,-50%) scale(1.18); }
-.equipment-scanline { position:absolute; inset:0; background:linear-gradient(transparent 48%,#22d3ee55 50%,transparent 52%); background-size:100% 120px; animation:equipment-scan 3.2s linear infinite; pointer-events:none; }
 @keyframes equipment-spin { to { transform:translateX(-50%) rotateX(70deg) rotateZ(360deg); } }
 @keyframes equipment-pulse { 50% { opacity:.25; transform:scaleX(3); } }
-@keyframes equipment-scan { to { background-position:0 120px; } }
+
+/* Process-specific live equipment views: every process uses its own physical layout. */
+.process-scene { position:relative; height:300px; overflow:hidden; border:1px solid #64748b; border-radius:18px; background:linear-gradient(180deg,#e2e8f0 0 17%,#94a3b8 18%,#1e293b 58%,#020617 100%); box-shadow:inset 0 0 0 5px #0f172a,inset 0 0 45px #0009,0 16px 35px #0008; isolation:isolate; perspective:800px; }
+.is-running::before { content:"LIVE PROCESS"; position:absolute; z-index:35; right:11px; top:9px; border-radius:999px; background:#dc2626; padding:4px 8px; color:white; font:900 9px ui-monospace,monospace; letter-spacing:.1em; box-shadow:0 0 15px #ef4444; animation:live-blink 1s steps(2) infinite; }
+.process-scene::after { content:""; position:absolute; inset:0; z-index:20; pointer-events:none; background:linear-gradient(transparent 49%,#22d3ee18 50%,transparent 51%); background-size:100% 9px; opacity:.45; }
+.process-scene.has-fault { border-color:#ef4444; box-shadow:inset 0 0 55px #7f1d1d99,0 0 20px #ef444455; }
+.scene-label,.scene-status { position:absolute; z-index:30; left:12px; right:12px; color:#a5f3fc; font:700 10px/1.3 ui-monospace,monospace; letter-spacing:.08em; }
+.scene-label { top:10px; }
+.scene-status { bottom:9px; padding-top:7px; border-top:1px solid #155e75; color:#67e8f9; }
+
+/* 1. CZ crystal grower */
+.cz-tower { position:absolute; left:50%; top:35px; width:116px; height:190px; transform:translateX(-50%); border:8px solid #64748b; border-radius:55px 55px 22px 22px; background:linear-gradient(90deg,#1e293b,#94a3b8 48%,#1e293b); box-shadow:14px 12px 28px #000; }
+.cz-shaft { position:absolute; left:52px; top:-12px; width:7px; height:67px; background:#cbd5e1; }
+.cz-ingot { position:absolute; z-index:3; left:40px; top:44px; width:31px; max-height:87px; border-radius:7px 7px 15px 15px; background:linear-gradient(90deg,#475569,#e2e8f0,#64748b); box-shadow:0 0 11px #fff8; transition:height .5s; }
+.cz-melt { position:absolute; left:14px; right:14px; bottom:16px; height:50px; border-radius:50%; background:radial-gradient(ellipse,#fff7ae,#f97316 55%,#7c2d12); box-shadow:0 0 26px #f97316; }
+.cz-heater { position:absolute; left:-23px; right:-23px; bottom:4px; height:74px; border:9px solid #ef4444; border-top-color:#fbbf24; border-radius:50%; filter:drop-shadow(0 0 8px #f97316); }
+.is-running .cz-shaft,.is-running .cz-ingot { animation:cz-pull 2.4s ease-in-out infinite; }
+@keyframes cz-pull { 50% { transform:translateY(-9px) rotate(2deg); } }
+@keyframes live-blink { 50% { opacity:.55; } }
+
+/* Image-registered simulator: the same equipment body and component coordinates are used in theory and practice. */
+.equipment-image-simulator { position:relative; width:min(100%,560px); aspect-ratio:1; margin:0 auto 14px; overflow:hidden; border:1px solid #64748b; border-radius:20px; background:#020617; box-shadow:inset 0 0 0 5px #0f172a,0 18px 38px #000a; }
+.equipment-simulator-image { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.equipment-simulator-vignette { position:absolute; inset:0; background:linear-gradient(180deg,#020617d9 0%,transparent 19%,transparent 65%,#020617ed 100%); pointer-events:none; }
+.equipment-flow-layer { position:absolute; inset:0; z-index:3; width:100%; height:100%; filter:drop-shadow(0 0 5px #22d3ee); pointer-events:none; }
+.registered-flow { opacity:.2; transition:opacity .25s,stroke-width .25s; }.registered-flow.is-current{opacity:.55}.registered-flow.is-flowing{animation:registered-flow var(--motion-seconds) linear infinite}.registered-flow.is-flowing.is-current{opacity:1;filter:drop-shadow(0 0 2px currentColor)}
+.sim-flow-legend{position:absolute;z-index:8;left:15px;top:55px;display:flex;max-width:70%;flex-wrap:wrap;gap:4px}.sim-flow-legend span{display:flex;align-items:center;gap:4px;border-radius:999px;background:#020617d9;padding:3px 6px;color:#94a3b8;font-size:8px}.sim-flow-legend span.active{color:white;box-shadow:0 0 9px #22d3ee}.sim-flow-legend i{width:8px;height:3px;border-radius:2px}
+.equipment-live-title { position:absolute; z-index:6; left:14px; right:14px; top:12px; display:flex; align-items:center; justify-content:space-between; gap:10px; border:1px solid #475569; border-radius:10px; background:#020617e8; padding:9px 12px; color:#e2e8f0; font-size:11px; }
+.equipment-live-title span { color:#94a3b8; font:800 9px ui-monospace,monospace; letter-spacing:.08em; }.equipment-image-simulator.is-running .equipment-live-title span{color:#6ee7b7;animation:live-blink 1s steps(2) infinite}
+.sim-component { position:absolute; z-index:7; display:flex; align-items:center; transform:translate(-50%,-50%); }
+.sim-component span { display:grid; width:25px; height:25px; place-items:center; border:2px solid #a5f3fc; border-radius:50%; background:#083344e8; color:white; font:900 10px ui-monospace,monospace; box-shadow:0 0 10px #22d3ee; }
+.sim-component label { display:none; margin-left:6px; max-width:150px; border:1px solid #22d3ee; border-radius:7px; background:#020617ee; padding:5px 7px; color:#cffafe; font-size:9px; white-space:nowrap; }
+.sim-component:hover label,.sim-component.is-active label { display:block; }.sim-component.is-active span { background:#06b6d4;color:#020617;animation:component-pulse .8s ease-in-out infinite alternate; }
+.sim-operation-panel { position:absolute; z-index:8; left:14px; right:14px; bottom:13px; border:1px solid #155e75; border-radius:11px; background:#020617ed; padding:9px 12px; }.sim-operation-panel span{display:block;color:#67e8f9;font:800 9px ui-monospace,monospace;letter-spacing:.1em}.sim-operation-panel strong{display:block;margin-top:3px;color:white;font-size:12px}.sim-operation-panel small{display:block;margin-top:3px;color:#94a3b8;font-size:9px}
+.sim-fault-overlay { position:absolute; z-index:12; inset:45% 10% auto; border:2px solid #ef4444; background:#450a0add; padding:12px; text-align:center; color:#fecaca; font-weight:900; box-shadow:0 0 30px #ef4444; animation:live-blink .65s steps(2) infinite; }
+.equipment-image-simulator.has-fault { border-color:#ef4444;box-shadow:inset 0 0 55px #7f1d1d99,0 0 25px #ef444477}.equipment-image-simulator.is-running .equipment-simulator-image{animation:equipment-breathe 3.5s ease-in-out infinite alternate}
+@keyframes component-pulse{to{transform:scale(1.28);box-shadow:0 0 24px #67e8f9}}@keyframes equipment-breathe{to{filter:brightness(1.08) contrast(1.04)}}
+@keyframes registered-flow{to{stroke-dashoffset:-20}}
+
+/* Process actuators registered to the real-equipment image. They animate only after the recipe interlocks pass. */
+.actuator { position:absolute; inset:0; z-index:5; pointer-events:none; }
+.actuator i { position:absolute; display:block; font-style:normal; }
+.wafer-shaft{left:49%;top:19%;width:5px;height:29%;background:linear-gradient(90deg,#64748b,#fff,#64748b);box-shadow:0 0 9px #fff}.wafer-crystal{left:45.6%;top:39%;width:8%;height:19%;border-radius:10px 10px 38% 38%;background:linear-gradient(90deg,#475569,#f8fafc,#64748b);box-shadow:0 0 15px #cffafe}.wafer-melt{left:37%;top:57%;width:26%;height:9%;border-radius:50%;background:radial-gradient(ellipse,#fff7ae,#f97316 55%,transparent 72%);opacity:.7}.is-running .wafer-shaft,.is-running .wafer-crystal{animation:sim-pull var(--motion-seconds) ease-in-out infinite alternate}.is-running .wafer-melt{animation:sim-rotate var(--motion-seconds) linear infinite}
+.oxidation-actuator{overflow:hidden}.oxidation-actuator i{left:17%;top:48%;width:24%;height:4px;background:linear-gradient(90deg,transparent,#67e8f9,#fff);box-shadow:0 0 12px #22d3ee;opacity:0}.oxidation-actuator i:nth-child(2){top:52%;animation-delay:.35s}.oxidation-actuator i:nth-child(3){top:56%;animation-delay:.7s}.oxidation-actuator span{position:absolute;left:15%;top:41%;color:#cffafe;font:800 10px ui-monospace,monospace;text-shadow:0 0 8px #22d3ee;opacity:.25}.is-running .oxidation-actuator i{animation:sim-gas var(--motion-seconds) linear infinite}.is-running .oxidation-actuator span{opacity:1}
+.lith-scan-beam{left:43%;top:28%;width:16%;height:42%;clip-path:polygon(42% 0,58% 0,100% 100%,0 100%);background:linear-gradient(#e0f2fe,#22d3ee88,#c026d388);opacity:0}.lith-moving-stage{left:32%;top:69%;width:34%;height:5%;border-radius:50%;background:#67e8f9aa;box-shadow:0 0 18px #22d3ee}.is-running .lith-scan-beam{animation:sim-beam var(--motion-seconds) ease-in-out infinite}.is-running .lith-moving-stage{animation:sim-stage var(--motion-seconds) ease-in-out infinite alternate}
+.etch-plasma-cloud{left:29%;top:29%;width:43%;height:35%;border-radius:50%;background:radial-gradient(ellipse,#fff,#d946efbb 12%,#7e22ce88 48%,transparent 72%);filter:blur(3px);opacity:.15}.etch-ion-stream{left:35%;top:40%;width:33%;color:#f5d0fe;text-align:center;letter-spacing:8px;opacity:0}.is-running .etch-plasma-cloud{animation:sim-plasma var(--motion-seconds) ease-in-out infinite alternate}.is-running .etch-ion-stream{animation:sim-ions var(--motion-seconds) linear infinite}
+.depo-robot-arm{left:48%;top:47%;width:5px;height:24%;transform-origin:50% 7%;background:linear-gradient(#f8fafc,#fbbf24);box-shadow:0 0 9px #fbbf24}.depo-robot-arm::after{content:"";position:absolute;left:-12px;bottom:-5px;width:29px;height:12px;border-radius:50%;background:#67e8f9}.depo-moving-wafer{left:44%;top:65%;width:12%;height:3%;border-radius:50%;background:#cffafe;box-shadow:0 0 13px #22d3ee}.depo-beam{left:9%;top:52%;width:37%;height:4px;background:linear-gradient(90deg,#f472b6,#fff,#67e8f9);opacity:.15}.is-running .depo-robot-arm,.is-running .depo-moving-wafer{animation:sim-robot var(--motion-seconds) ease-in-out infinite alternate}.is-running .depo-beam{animation:sim-beam var(--motion-seconds) ease-in-out infinite}
+.metal-bubbles{left:16%;top:37%;width:24%;color:#cffafe;text-align:center;word-spacing:12px;opacity:.2}.metal-cmp-disc{right:14%;top:43%;width:23%;aspect-ratio:1;border:5px dashed #67e8f9;border-radius:50%;box-shadow:0 0 14px #22d3ee;opacity:.35}.is-running .metal-bubbles{animation:sim-bubbles var(--motion-seconds) linear infinite}.is-running .metal-cmp-disc{animation:sim-rotate var(--motion-seconds) linear infinite;opacity:.9}
+.eds-probe-bank{left:37%;top:31%;width:27%;height:9%;border-bottom:8px double #fbbf24;filter:drop-shadow(0 0 6px #fbbf24)}.eds-scan-line{left:27%;top:47%;width:47%;height:3px;background:#fff;box-shadow:0 0 14px #22d3ee;opacity:0}.is-running .eds-probe-bank{animation:sim-probe var(--motion-seconds) ease-in-out infinite}.is-running .eds-scan-line{animation:sim-scan var(--motion-seconds) linear infinite;opacity:1}
+.package-bond-head{left:29%;top:27%;width:8%;height:24%;border-radius:5px;background:linear-gradient(90deg,#475569,#fff,#64748b);box-shadow:0 0 10px #fff}.package-wire{left:34%;top:48%;width:18%;height:13%;border:3px solid #fbbf24;border-left:0;border-bottom:0;border-radius:0 100% 0 0}.package-press{right:20%;top:31%;width:22%;height:7%;background:#ef4444aa;box-shadow:0 0 12px #ef4444}.is-running .package-bond-head,.is-running .package-wire{animation:sim-bond var(--motion-seconds) ease-in-out infinite alternate}.is-running .package-press{animation:sim-press var(--motion-seconds) ease-in-out infinite}
+@keyframes sim-pull{to{transform:translateY(-13%) rotate(4deg)}}@keyframes sim-rotate{to{transform:rotate(360deg)}}@keyframes sim-gas{0%{transform:translateX(-45%);opacity:0}35%{opacity:1}100%{transform:translateX(230%);opacity:0}}@keyframes sim-beam{50%{opacity:.95;filter:brightness(1.5)}}@keyframes sim-stage{to{transform:translateX(18%)}}@keyframes sim-plasma{to{opacity:1;transform:scale(1.08)}}@keyframes sim-ions{0%{transform:translateY(-20%);opacity:0}35%{opacity:1}100%{transform:translateY(70%);opacity:0}}@keyframes sim-robot{to{transform:rotate(112deg)}}@keyframes sim-bubbles{0%{transform:translateY(25%);opacity:0}50%{opacity:1}100%{transform:translateY(-90%);opacity:0}}@keyframes sim-probe{50%{transform:translateY(34%)}}@keyframes sim-scan{to{transform:translateY(460%)}}@keyframes sim-bond{to{transform:translate(42%,18%)}}@keyframes sim-press{50%{transform:translateY(250%)}}
+
+/* 2. Horizontal oxidation furnace */
+.ox-heaters { position:absolute; left:7%; right:7%; top:78px; height:102px; border:12px solid #64748b; border-radius:24px; background:repeating-linear-gradient(90deg,#7f1d1d 0 21%,#fb923c 22% 24%,#7f1d1d 25% 46%); box-shadow:0 0 25px #f9731666; }
+.ox-tube { position:absolute; inset:21px -18px; border:5px solid #bae6fd; border-radius:50px; background:linear-gradient(#ffffff55,#0c4a6e99); }
+.ox-boat { position:absolute; left:25%; bottom:6px; display:flex; gap:8px; }
+.ox-boat i { display:block; width:5px; height:36px; transform:skewX(-8deg); background:#dbeafe; box-shadow:0 0 6px #38bdf8; }
+.ox-gas { position:absolute; left:0; top:47%; width:34%; height:3px; background:linear-gradient(90deg,#22d3ee,transparent); }
+.ox-gas::after { content:"▶"; position:absolute; right:-4px; top:-8px; color:#67e8f9; }
+.is-running .ox-gas { animation:gas-flow 1.2s linear infinite; }
+@keyframes gas-flow { from { transform:translateX(-18px); opacity:.2; } to { transform:translateX(48px); opacity:1; } }
+
+/* 3. Projection lithography scanner */
+.lith-source { position:absolute; left:calc(50% - 31px); top:34px; width:62px; height:28px; border:5px solid #64748b; border-radius:8px; background:#e0f2fe; box-shadow:0 0 20px #38bdf8; }
+.lith-reticle { position:absolute; left:calc(50% - 52px); top:79px; width:104px; height:8px; background:repeating-linear-gradient(90deg,#f8fafc 0 9px,#0f172a 9px 17px); }
+.lith-lens { position:absolute; z-index:4; left:calc(50% - 34px); top:104px; width:68px; height:40px; border:5px solid #7dd3fc; border-radius:50%; background:#082f49; color:#bae6fd; text-align:center; font-size:25px; }
+.lith-beam { position:absolute; z-index:2; left:calc(50% - 42px); top:58px; width:84px; height:115px; clip-path:polygon(38% 0,62% 0,100% 100%,0 100%); background:linear-gradient(#67e8f9cc,#a855f766); opacity:.25; }
+.lith-stage { position:absolute; left:calc(50% - 83px); top:175px; width:166px; height:32px; border:6px solid #475569; border-radius:6px; background:#94a3b8; }
+.lith-wafer { width:82px; height:18px; margin:-13px auto 0; border-radius:50%; background:linear-gradient(90deg,#38bdf8,#f0abfc,#38bdf8); box-shadow:0 0 12px #22d3ee; }
+.is-running .lith-beam { animation:beam-flash .8s ease-in-out infinite; }.is-running .lith-stage { animation:stage-scan 2s ease-in-out infinite alternate; }
+@keyframes beam-flash { 50% { opacity:.95; } } @keyframes stage-scan { to { transform:translateX(35px); } }
+
+/* 4. ICP-RIE chamber */
+.rie-coil { position:absolute; left:calc(50% - 72px); top:44px; width:144px; height:38px; border:7px double #f97316; border-radius:50%; box-shadow:0 0 18px #f97316; }
+.rie-chamber { position:absolute; left:calc(50% - 92px); top:63px; width:184px; height:145px; overflow:hidden; border:10px solid #64748b; border-radius:32px 32px 55px 55px; background:#111827; }
+.rie-plasma { position:absolute; inset:8px 14px 52px; border-radius:50%; background:radial-gradient(ellipse,#f0abfccc,#7e22ce88 50%,transparent); filter:blur(3px); }
+.rie-ions { position:absolute; z-index:2; left:0; right:0; top:55px; color:#e879f9; text-align:center; letter-spacing:8px; }
+.rie-wafer { position:absolute; left:20%; right:20%; bottom:15px; height:18px; border-radius:50%; background:#67e8f9; box-shadow:0 0 15px #22d3ee; }
+.is-running .rie-plasma { animation:plasma-pulse .55s ease-in-out infinite alternate; }.is-running .rie-ions { animation:ion-drop .7s linear infinite; }
+@keyframes plasma-pulse { to { opacity:.45; transform:scale(.9); } } @keyframes ion-drop { to { transform:translateY(24px); opacity:.25; } }
+
+/* 5. Cluster deposition / implantation */
+.cluster-core { position:absolute; z-index:4; left:calc(50% - 54px); top:83px; width:108px; height:108px; border:9px solid #64748b; border-radius:50%; background:#0f172a; }
+.cluster-arm { position:absolute; left:47px; top:15px; width:7px; height:68px; transform-origin:50% 38px; background:#fbbf24; }.cluster-arm::after { content:""; position:absolute; left:-10px; bottom:-9px; width:27px; height:16px; border-radius:50%; background:#67e8f9; }
+.cluster-wafer { position:absolute; left:34px; bottom:25px; width:34px; height:12px; border-radius:50%; background:#a5f3fc; }
+.cluster-chamber { position:absolute; width:70px; height:58px; border:7px solid #64748b; border-radius:18px; background:#172554; box-shadow:inset 0 0 15px #8b5cf6; }.chamber-0{left:15%;top:62px}.chamber-1{right:15%;top:62px}.chamber-2{left:15%;top:158px}.chamber-3{right:15%;top:158px}
+.implant-beam { position:absolute; z-index:2; left:4%; top:121px; width:35%; height:4px; background:linear-gradient(90deg,#f472b6,#67e8f9); box-shadow:0 0 10px #f472b6; }
+.is-running .cluster-arm { animation:robot-rotate 2.2s ease-in-out infinite; }.is-running .implant-beam { animation:beam-flow .8s linear infinite; }
+@keyframes robot-rotate { 50% { transform:rotate(115deg); } } @keyframes beam-flow { 50% { filter:brightness(2); transform:translateX(12px); } }
+
+/* 6. Copper plating and CMP */
+.plating-cell { position:absolute; left:9%; top:65px; width:34%; height:137px; overflow:hidden; border:9px solid #64748b; border-radius:12px 12px 32px 32px; background:linear-gradient(#164e63 18%,#0891b2 19%,#0e7490); }
+.plating-wafer { width:92px; height:17px; margin:23px auto; border-radius:50%; background:#f97316; box-shadow:0 0 13px #fdba74; }.plating-flow { color:#a5f3fc;text-align:center;word-spacing:16px; }
+.cmp-platen { position:absolute; right:8%; top:85px; width:138px; height:100px; border:9px solid #475569; border-radius:50%; background:repeating-radial-gradient(circle,#334155 0 8px,#64748b 9px 13px); }
+.cmp-wafer { position:absolute; left:38px; top:-18px; width:70px; height:50px; border:7px solid #cbd5e1; border-radius:50%; background:#b45309; }
+.is-running .plating-flow { animation:bubbles 1s linear infinite; }.is-running .cmp-platen { animation:cmp-spin 2s linear infinite; }
+@keyframes bubbles { to { transform:translateY(-22px); opacity:.2; } } @keyframes cmp-spin { to { transform:rotate(360deg); } }
+
+/* 7. Wafer prober and ATE */
+.probe-head { position:absolute; z-index:5; left:50%; top:42px; width:122px; height:53px; transform:translateX(-50%); border:8px solid #64748b; border-radius:10px; background:#1e293b; display:flex; justify-content:space-around; }.probe-head i { width:2px; height:56px; transform:rotate(var(--tilt,4deg)); background:#fbbf24; }
+.probe-wafer { position:absolute; left:50%; top:111px; width:142px; height:105px; transform:translateX(-50%) rotateX(18deg); border:7px solid #38bdf8; border-radius:50%; background:#082f49; display:grid; grid-template-columns:repeat(6,1fr); padding:14px 18px; overflow:hidden; box-shadow:0 0 20px #0ea5e9; }.probe-wafer i { border:1px solid #22d3ee88; background:#15803d99; }.probe-wafer i.bad { background:#dc2626; }
+.probe-scan { position:absolute; z-index:8; left:calc(50% - 75px); top:120px; width:150px; height:3px; background:#f8fafc; box-shadow:0 0 11px #fff; opacity:0; }
+.is-running .probe-head { animation:probe-contact 1.2s ease-in-out infinite; }.is-running .probe-scan { opacity:1;animation:probe-scan 1.6s linear infinite; }
+@keyframes probe-contact { 50% { transform:translate(-50%,14px); } } @keyframes probe-scan { to { transform:translateY(82px); } }
+
+/* 8. Die/wire bonding and molding */
+.bond-head { position:absolute; z-index:6; left:22%; top:45px; width:72px; height:77px; border:8px solid #64748b; border-radius:10px; background:#1e293b; }.bond-capillary { position:absolute; left:29px; bottom:-58px; width:9px; height:66px; background:#f8fafc; clip-path:polygon(20% 0,80% 0,100% 100%,0 100%); }.bond-wire { position:absolute; left:33px; top:68px; width:90px; height:50px; border:3px solid #fbbf24; border-left:0;border-bottom:0;border-radius:0 100% 0 0; }
+.bond-die { position:absolute; left:28%; top:177px; width:73px; height:20px; transform:skewX(-12deg); background:#38bdf8; box-shadow:0 0 11px #22d3ee; }.bond-substrate { position:absolute; left:13%; top:201px; width:46%; height:13px; background:#15803d; }
+.mold-press { position:absolute; right:9%; top:58px; width:115px; height:145px; border:10px solid #64748b; background:#1e293b; display:grid; place-items:center; }.mold-press::before { content:""; position:absolute; top:12px; width:83px; height:28px; background:#7f1d1d; }.mold-press span { color:#fca5a5;font:700 10px monospace; }
+.is-running .bond-head { animation:bond-move 1.6s ease-in-out infinite; }.is-running .mold-press::before { animation:mold-down 2.4s ease-in-out infinite; }
+@keyframes bond-move { 50% { transform:translate(54px,16px); } } @keyframes mold-down { 50% { transform:translateY(72px); } }
 
 body {
   margin: 0;
